@@ -1,0 +1,48 @@
+.app .popup-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.65);
+}
+
+.app .popup-fg {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    background: white;
+    border: 10px;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+
+.app .popup-fg label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}   
+
+.app .popup-fg img {
+    margin: 0px;
+    height: 65%; 
+    width: auto;
+}   
+
+@media screen and (max-aspect-ratio: 2/3) {
+    .app .popup-fg img {
+        height: auto;
+        width: 90%; 
+    }   
+}
+    
+
+

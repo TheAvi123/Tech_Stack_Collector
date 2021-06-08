@@ -2,9 +2,13 @@ body {
 	margin: 0;
   	padding: 50px;
   	background-color: #66CCFF;
-  	font-family: sans-serif;
+  	font-family: Arial, sans-serif;
 }
 
 #root {
   	justify-content: center;
+}
+
+.app h1 {
+	text-align: center;
 }

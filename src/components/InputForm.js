@@ -58,7 +58,7 @@ class InputForm extends React.Component {
             date: Date.now()
         };
         // Add new technology to state
-        this.props.updateStack(this.props.stack.concat(newTech));
+        this.props.addToStack(newTech);
     }
 }
 
