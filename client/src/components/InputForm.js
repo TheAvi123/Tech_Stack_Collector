@@ -54,8 +54,7 @@ class InputForm extends React.Component {
         let newTech = {
             name: this.input_name.value,
             image: this.input_img.value,
-            exp: this.input_exp.value,
-            date: Date.now()
+            exp: this.input_exp.value
         };
         // Add new technology to state
         this.props.addToStack(newTech);

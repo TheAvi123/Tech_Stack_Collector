@@ -12,6 +12,20 @@
     flex-wrap: wrap;
 }
 
+.app .techStack form {
+    display: flex;
+}
+
+.app .techStack input {
+    padding: 10px;
+    margin: 8px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 7px;
+    width: 100%;
+}
+
 @media screen and (max-width: 750px) {
     .app .techStack .cardList {
     }
