@@ -2,6 +2,8 @@ import React from 'react';
 import TechCard from './TechCard';
 import '../styling/TechStack.css'
 
+const EmptyStackMessage = "This Stack is Empty!"
+
 class TechStack extends React.Component {
 
     constructor() {
@@ -16,16 +18,21 @@ class TechStack extends React.Component {
 
         // Bind functions to make sure this.openCard resolves correctly
         this.createCard = this.createCard.bind(this); 
-    }
+    };
 
     render() {
         let techStack = this.props.stack;
-        let cardList = techStack.map(this.createCard);
+        let cardList = techStack.length > 0 ? techStack.map(this.createCard) : (<label>{EmptyStackMessage}</label>); 
         return (
             <div className="techStack">
                 <h3 className="sectionText">
                     Tech Stack
                 </h3>
+                <form> 
+                    <input type="text" placeholder="Search" 
+                           ref={(s_input) => this.searchInput = s_input}
+                           onChange={(e) => {this.props.searchStack(this.searchInput.value)}}/>
+                </form>
                 <ul className="cardList"> 
                     {cardList}
                 </ul>
