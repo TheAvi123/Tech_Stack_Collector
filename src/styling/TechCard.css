@@ -1,0 +1,30 @@
+.app .cardList .techCard {
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app .cardList .techCard:hover {
+    background-color: pink;
+}
+
+.app .cardList .techCard img {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 250px;
+}
+
+.app .cardList .dragCard,
+.app .cardList .dragCard:hover {
+    background-color: rgb(75, 75, 75);
+    color: rgb(75, 75, 75);
+}
+
+.app .cardList .dragCard img {
+    opacity: 0;
+}

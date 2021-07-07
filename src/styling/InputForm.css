@@ -1,0 +1,86 @@
+/* Form Header */
+
+.app .form h3 {
+    margin: 8px;
+}
+
+/* Form Inputs */
+
+.app .form .inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.app .form .inputs input, 
+.app .form .inputs select {
+    padding: 10px;
+    margin: 8px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 7px;
+    min-width: 0;
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.app .form .inputs #imageInput {
+    flex-basis: 400px;
+}
+
+.app .form .inputs #yoeInput {
+    flex-basis: 175px;
+}
+
+@media screen and (max-width: 750px), 
+        screen and (max-aspect-ratio: 2/3) {
+    .app .form .inputs {
+        flex-direction: column;
+    }
+
+    .app .form .inputs input,
+    .app .form .inputs select {
+        flex-basis: auto;
+    }
+
+    .app .form .inputs #imageInput, 
+    .app .form .inputs #yoeInput {
+        flex-basis: auto;
+    }
+}
+
+/* Form Buttons */
+
+.app .form .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.app .form .buttons button {
+    padding: 10px;
+    margin: 8px;
+    font-size: 16px;
+    border: 2px solid #0066FF;
+    border-radius: 7px;
+    background-color: #0066FF;
+    color: #FFF;
+    flex-grow: 1;
+}
+
+.app .form .buttons button:hover {
+    background-color: #003399;
+    border: 2px solid #003399;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 400px), 
+        screen and (max-aspect-ratio: 2/3) {
+    .app .form .buttons {
+        flex-direction: column;
+    }
+
+    .app .form .buttons button {
+        flex-basis: auto;
+    }
+}
