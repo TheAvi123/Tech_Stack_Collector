@@ -14,6 +14,7 @@ function App() {
 	const [selectedTech, setSelectedTech] = useState(null);
 
 	const [addTrigger, setAddTrigger] = useState(null);
+	const [resetTrigger, setResetTrigger] = useState(null);
 	const [deleteTrigger, setDeleteTrigger] = useState(null);
 	const [searchTrigger, setSearchTrigger] = useState("");
 
@@ -35,67 +36,83 @@ function App() {
 	// };
 
 	useEffect(() => {  
+		let addToStack = () => {
+			if (addTrigger) {
+				console.log("Initiating POST Request");
+				let params = addTrigger.name + '/';
+				params += addTrigger.exp + '/';
+				params += addTrigger.image;
+				axios.post(SERVER + '/stack/' + params).then(res => {
+					console.log("Received POST Response");
+					if (res.status === 200) {
+						setStack(res.data.stack);
+					} else {
+						console.log("POST Request Failed:");
+						console.log(res);
+					}
+				});
+				setAddTrigger(null);
+			}
+		}
 		addToStack();
 	}, [addTrigger]);
-	
-	let addToStack = () => {
-		if (addTrigger) {
-			console.log("Initiating POST Request");
-			let params = addTrigger.name + '/';
-			params += addTrigger.exp + '/';
-			params += addTrigger.image;
-			axios.post(SERVER + '/stack/' + params).then(res => {
-				console.log("Received POST Response");
-				if (res.status === 200) {
-					setStack(res.data.stack);
-				} else {
-					console.log("POST Request Failed:");
-					console.log(res);
-				}
-			});
-			setAddTrigger(null);
-		}
-	}
-	
-	useEffect(() => {  
-		deleteTech();
-	}, [deleteTrigger]);
 
-	let deleteTech = () => {
-		if (selectedTech) {
-			console.log("Initiating DELETE Request");
-			axios.delete(SERVER + '/stack/' + selectedTech.name).then(res => {
-				console.log("Received DELETE Response");
-				if (res.status === 200) {
-					setStack(res.data.stack);
-				} else {
-					console.log("DELETE Request Failed:");
-					console.log(res);
-				}
-			});
-			setSelectedTech(null);
-			setShowPopup(false);
-		}
-	}
+	useEffect(() => {
+		let resetStack = () => {
+			if (resetTrigger) {
+				console.log("Initiating Reset POST Request");
+				axios.post(SERVER + '/stack/reset').then(res => {
+					console.log("Received POST Response");
+					if (res.status === 200) {
+						setStack(res.data.stack);
+					} else {
+						console.log("POST Request Failed:");
+						console.log(res);
+					}
+				});
+				setResetTrigger(null);
+			}
+		};
+		resetStack();
+	}, [resetTrigger]);
+	
+	useEffect(() => { 
+		let deleteTech = () => {
+			if (selectedTech) {
+				console.log("Initiating DELETE Request");
+				axios.delete(SERVER + '/stack/' + selectedTech.name).then(res => {
+					console.log("Received DELETE Response");
+					if (res.status === 200) {
+						setStack(res.data.stack);
+					} else {
+						console.log("DELETE Request Failed:");
+						console.log(res);
+					}
+				});
+				setSelectedTech(null);
+				setShowPopup(false);
+			}
+		} 
+		deleteTech();
+	}, [deleteTrigger]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {  
 		console.log("SEARCH STRING: " + searchTrigger);
+		let getStack = () => {
+			console.log("Initiating GET Request");
+			axios.get(SERVER + '/stack/' + searchTrigger).then(res => {
+				console.log("Received GET Response");
+				console.log(res.data);
+				if (res.status === 200) {
+					setStack(res.data.stack);
+				} else {
+					console.log("GET Request Failed:");
+					console.log(res);
+				}
+			});
+		}
 		getStack();
 	}, [searchTrigger]);
-
-	let getStack = () => {
-		console.log("Initiating GET Request");
-		axios.get(SERVER + '/stack/' + searchTrigger).then(res => {
-			console.log("Received GET Response");
-			console.log(res.data);
-			if (res.status === 200) {
-				setStack(res.data.stack);
-			} else {
-				console.log("GET Request Failed:");
-				console.log(res);
-			}
-		});
-	}
 
 	let togglePopup = (selectedTech) => {
 		if (showPopup) {
@@ -112,7 +129,8 @@ function App() {
 			<InputForm addToStack={(newTech) => {setAddTrigger(newTech)}}/>
 			<TechStack stack={stack} 
 			    	   openPopup={togglePopup.bind(this)}
-			           searchStack={(input) => {setSearchTrigger(input)}}/>
+			           searchStack={(input) => {setSearchTrigger(input)}}
+					   resetStack={() => {setResetTrigger(1)}}/>
 			{
 				showPopup && 
 				<TechPopUp tech={selectedTech} 

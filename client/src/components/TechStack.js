@@ -36,6 +36,9 @@ class TechStack extends React.Component {
                 <ul className="cardList"> 
                     {cardList}
                 </ul>
+                <form>
+                    <button type="button" onClick={this.props.resetStack}>Reset Stack</button>
+                </form>
             </div>
         );
     }
