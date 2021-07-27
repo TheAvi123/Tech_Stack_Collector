@@ -23,8 +23,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/stack", stackRouter);
+// serve front-end app
+app.use(express.static(path.join(__dirname, "build")));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+// routes
+app.use("/api/", indexRouter);
+app.use("/api/stack", stackRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
