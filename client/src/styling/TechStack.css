@@ -30,15 +30,16 @@
     padding: 10px;
     margin: 8px;
     font-size: 16px;
-    border: 2px solid #b30000;
+    border: 2px solid #ff0000;
     border-radius: 7px;
-    background-color: #b30000;
-    color: #FFF;
+    background-color: #ff0000;
+    color: #000;
 }
 
 .app .techStack button:hover {
-    background-color: #ff3300;
-    border: 2px solid #ff3300;
+    background-color: #a00000;
+    border: 2px solid #a00000;
+    color: #FFF;
     cursor: pointer;
 }
 
