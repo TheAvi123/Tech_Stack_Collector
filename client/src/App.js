@@ -5,7 +5,7 @@ import TechPopUp from './components/TechPopUp';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const SERVER = "http://localhost:3001/api";
+const SERVER = "/api";
 
 function App() {
 
